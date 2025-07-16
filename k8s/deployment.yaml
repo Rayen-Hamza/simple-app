@@ -30,3 +30,22 @@ spec:
       port: 80
       targetPort: 80
   type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: random-logger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: random-logger
+  template:
+    metadata:
+      labels:
+        app: random-logger
+    spec:
+      containers:
+        - name: logger
+          image: chentex/random-logger
+          imagePullPolicy: Always
